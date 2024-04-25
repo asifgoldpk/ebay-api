@@ -199,15 +199,14 @@ export default class XMLRequest {
 
       const {data} = response;
 
-      // return raw XML
-      if (this.config.raw) {
-        return data;
-      }
-
       const json = this.xml2JSON(data);
 
       checkEBayTraditionalResponse(response, json);
 
+      // return raw XML
+      if (this.config.raw) {
+        return data;
+      }
       return json;
     } catch (error: any) {
       log('error', error);
