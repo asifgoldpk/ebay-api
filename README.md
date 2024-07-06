@@ -22,7 +22,7 @@ It supports `client credentials grant` and `authorization code grant` \(Auth'N'A
 
 ## Changelog
 
-* `v8.7.2-RC.0` is the latest release.
+* `v9.1.0` is the latest release.
 * See [here](https://github.com/hendt/ebay-api/blob/master/CHANGELOG.md) for the full changelog.
 
 ## Implementation status
@@ -35,7 +35,7 @@ It supports `client credentials grant` and `authorization code grant` \(Auth'N'A
 | **Commerce API**   | ✔ Catalog API `v1_beta.3.1`<br>✔ Charity API `v1.2.0`<br>✔ Identity API `v1.0.0`<br>✔ Notification API `v1.2.0`<br>✔ Taxonomy API `v1.0.0`<br>✔ Translation API `v1_beta.1.4`<br>✔ Media API `v1_beta.1.0`                                                                                                                                                                   |
 | **Developer API**  | ✔ Analytics API                                                                                                                                                                                                                                                                                                                                                              |
 | **Post Order API** | ✔ Cancellation API<br>✔ Case Management API<br>✔ Inquiry API<br>✔ Return API                                                                                                                                                                                                                                                                                                 |
-| **Sell API**       | ✔ Account API `v1.9.0`<br>✔ Analytics API `v1.3.0`<br>✔ Compliance API `v1.4.1`<br>✔ Feed API `v1.3.1`<br>✔ Finance API `v1.9.0`<br>✔ Fulfillment API `v1.19.10`<br>✔ Inventory API `v1.14.0`<br>✔ Listing API `v1_beta.2.1`<br>✔ Logistics API `v1_beta.0.0`<br>✔ Marketing API `v1.17.0`<br>✔ Metadata API `v1.4.2`<br>✔ Negotiation API `v1.1.0`<br>✔ Recommendation API `v1.1.0` |
+| **Sell API**       | ✔ Account API `v1.9.0`<br>✔ Analytics API `v1.3.0`<br>✔ Compliance API `v1.4.1`<br>✔ Feed API `v1.3.1`<br>✔ Finance API `v1.9.0`<br>✔ Fulfillment API `v1.19.10`<br>✔ Inventory API `v1.14.0`<br>✔ Listing API `v1_beta.2.1`<br>✔ Logistics API `v1_beta.0.0`<br>✔ Marketing API `v1.17.0`<br>✔ Metadata API `v1.7.1`<br>✔ Negotiation API `v1.1.0`<br>✔ Recommendation API `v1.1.0` |
 
 ### Traditional API
 
@@ -497,6 +497,45 @@ try {
   console.error(error);
 }
 ```
+## Handling errors
+```js
+import eBayApi from 'ebay-api';
+import { EBayApiError } from 'ebay-api/lib/errors';
+
+const eBay = new eBayApi(/* {  your config here } */);
+
+try {
+  const result = await eBay.trading.GetItem({
+    ItemID: 'itemId',
+  });
+  console.log(result);
+} catch (error) {
+  if (error instanceof EBayApiError && error.errorCode === 17) {
+    // Item not found
+  } else {
+    throw error;
+  }
+  
+  // in error there is also the field "meta" with the response
+  if (error instanceof EBayApiError && error.meta?.res?.status === 404) {
+    // not found
+    
+    // The first error
+    console.log(error?.firstError);
+  }
+  
+  
+}
+```
+
+The `errorCode` is extracted from the first error in the API response.
+
+* [Shopping API Error Codes](https://developer.ebay.com/devzone/shopping/docs/callref/Errors/ErrorMessages.html)
+* [Trading API  Error Codes](https://developer.ebay.com/devzone/xml/docs/reference/ebay/errors/errormessages.htm)
+* [RESTful  Error Codes](https://developer.ebay.com/devzone/xml/docs/reference/ebay/errors/errormessages.htm)
+* [PostOrder  Error Codes](https://developer.ebay.com/Devzone/post-order/ErrorMessages.html#ErrorsByNumber)
+
+
 
 ## Controlling Traditional XML request and response
 
@@ -505,7 +544,8 @@ The second parameter in the traditional API has the following options:
 ```typescript
 export type Options = {
   raw?: boolean // return raw XML
-  parseOptions?: object // https://github.com/NaturalIntelligence/fast-xml-parser
+  parseOptions?: X2jOptions // https://github.com/NaturalIntelligence/fast-xml-parser
+  xmlBuilderOptions?: XmlBuilderOptions // https://github.com/NaturalIntelligence/fast-xml-parser
   useIaf?: boolean // use IAF in header instead of Bearer
   headers?: Headers // additional Headers (key, value)
   hook?: (xml) => BodyHeaders // hook into the request to modify the body and headers
@@ -514,6 +554,40 @@ export type Options = {
 
 [Fast XML](https://github.com/NaturalIntelligence/fast-xml-parser) is used to parse the XML. You can pass the parse
 option to `parseOptions` parameter.
+
+### Parse JSON Array
+```js
+
+eBay.trading.SetNotificationPreferences({
+  UserDeliveryPreferenceArray: [{
+    NotificationEnable: {
+      EventType: 'ItemListed',
+      EventEnable: 'Enable',
+    }
+  }, {
+    NotificationEnable: {
+      EventType: 'ItemSold',
+      EventEnable: 'Enable',
+    },
+  }],
+}, { xmlBuilderOptions: { oneListGroup: true }})
+```
+
+Will produce:
+```xml
+<UserDeliveryPreferenceArray>
+  <NotificationEnable>
+    <EventType>ItemListed</EventType>
+    <EventEnable>Enable</EventEnable>
+  </NotificationEnable>
+  <NotificationEnable>
+    <EventType>ItemSold</EventType>
+    <EventEnable>Enable</EventEnable>
+  </NotificationEnable>
+</UserDeliveryPreferenceArray>
+```
+
+
 
 ## Examples
 

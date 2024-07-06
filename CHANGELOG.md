@@ -1,4 +1,41 @@
 # eBay API Changelog
+## [9.1.0](https://github.com/hendt/ebay-api/compare/v9.0.3...v9.1.0) (2024-07-02)
+
+
+### Features
+
+* add "firstError" in EBayApiError ([c2bff1e](https://github.com/hendt/ebay-api/commit/c2bff1ee5271d959282e0d86d6683dd541640fce))
+* make xmlBuilderOptions configurable ([ce7f787](https://github.com/hendt/ebay-api/commit/ce7f787136b6756350c82aa9b40aff08b90739b4))
+
+### [9.0.3](https://github.com/hendt/ebay-api/compare/v9.0.2...v9.0.3) (2024-06-27)
+
+
+### Bug Fixes
+
+* change type of response status to number ([f062fc9](https://github.com/hendt/ebay-api/commit/f062fc937895c96709f3f8ff2fe2ef730f5f1264))
+* version in README.md ([0991cc3](https://github.com/hendt/ebay-api/commit/0991cc3832ee040df01d59d11d120245822dfd22))
+
+### [9.0.2](https://github.com/hendt/ebay-api/compare/v9.0.1...v9.0.2) (2024-06-21)
+
+
+### Bug Fixes
+
+* revert back to postForm because axios does not encode correctly ([c369044](https://github.com/hendt/ebay-api/commit/c369044d850f21b3b6bc4bf8f90e01e841311332))
+
+### [9.0.1](https://github.com/hendt/ebay-api/compare/v9.0.0...v9.0.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* update deps ([14c41ab](https://github.com/hendt/ebay-api/commit/14c41abaf7910d8383e43c901088d080d8453e08))
+
+## [9.0.0](https://github.com/hendt/ebay-api/compare/v9.0.0-RC.0...v9.0.0) (2024-06-20)
+
+
+### Features
+
+* update sell metadata to v1.7.1 ([124ed0b](https://github.com/hendt/ebay-api/commit/124ed0bae347267d2f31234fa52068e2e9a5829a))
+
 ## [9.0.0-RC.0](https://github.com/hendt/ebay-api/compare/v8.7.2-RC.0...v9.0.0-RC.0) (2024-04-25)
 
 
