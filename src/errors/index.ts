@@ -251,6 +251,10 @@ function getEBayError(data?: EBayApiErrorResponse): EBayErrorResponse {
       description: data.error_description || ''
     };
   }
+  // RESTful
+  if ('error' in data && Array.isArray(data.error)) {
+    return data.error[0];
+  }
 
   // RESTful
   if ('errors' in data && Array.isArray(data.errors)) {
