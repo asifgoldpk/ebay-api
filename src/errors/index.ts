@@ -1,3 +1,4 @@
+
 // tslint:disable:max-classes-per-file
 import debug from 'debug';
 
@@ -251,6 +252,10 @@ function getEBayError(data?: EBayApiErrorResponse): EBayErrorResponse {
   // RESTful
   if ('errors' in data && Array.isArray(data.errors)) {
     return data.errors[0];
+  }
+  // sign
+  if ('error' in data && Array.isArray(data.error)) {
+    return data.error[0];
   }
 
   // PostOrder https://developer.ebay.com/Devzone/post-order/ErrorResponse.html#ErrorResponse
