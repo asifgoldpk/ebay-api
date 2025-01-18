@@ -285,7 +285,7 @@ const getErrorMessage = (eBayError: EBayErrorResponse) => {
 };
 
 const getErrorDescription = (eBayError: EBayErrorResponse, response: any) => {
-  const parameterValue = response.data?.error?.[0]?.parameter?.[0]?.value ?? '';
+  const parameterValue = response?.data?.error?.[0]?.parameter?.[0]?.value ?? '';
   if ('description' in eBayError) {
     // RESTful
     return eBayError.description + ' ' + parameterValue;
