@@ -285,14 +285,15 @@ const getErrorMessage = (eBayError: EBayErrorResponse) => {
 };
 
 const getErrorDescription = (eBayError: EBayErrorResponse, response: any) => {
+  const parameterValue = response.data?.error?.[0]?.parameter?.[0]?.value ?? '';
   if ('description' in eBayError) {
     // RESTful
-    return eBayError.description;
+    return eBayError.description + ' ' + parameterValue;
   } else if ('Errors' in eBayError) {
     // Traditional
     return Array.isArray(eBayError.Errors) ? eBayError.Errors[0].LongMessage : eBayError.Errors.LongMessage;
   } else if ('longMessage' in eBayError) {
-    return eBayError.longMessage;
+    return eBayError.longMessage  + ' ' + parameterValue;
   }
 
   return (response?.status !== 200 ? response?.statusText : '') || '';
