@@ -393,7 +393,7 @@ export const checkEBayTraditionalResponse = (apiResponse: any, data: any) => {
   if (!('Errors' in data) && !('errorMessage' in data)) {
     return;
   }
-
+  
   const {
     message,
     meta,
@@ -402,6 +402,10 @@ export const checkEBayTraditionalResponse = (apiResponse: any, data: any) => {
     firstError
   } = extractEBayError(apiResponse, data as EBayApiErrorResponse);
 
+  if (!Array.isArray(firstError) && firstError?.SeverityCode == 'Warning')
+  {
+    return // Asif Raza. Warning can be safely ignored
+  }
   if (typeof errorCode === 'undefined') {
     // Can happen on restful request
     throw new EBayApiError(message, description, meta, errorCode, firstError);
