@@ -402,7 +402,7 @@ export const checkEBayTraditionalResponse = (apiResponse: any, data: any) => {
     firstError
   } = extractEBayError(apiResponse, data as EBayApiErrorResponse);
 
-  if (!Array.isArray(firstError) && firstError?.SeverityCode == 'Warning')
+  if (!Array.isArray(firstError) && (firstError as EBayTraditionalError).SeverityCode == 'Warning')
   {
     return // Asif Raza. Warning can be safely ignored
   }
