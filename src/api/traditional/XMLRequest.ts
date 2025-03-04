@@ -42,6 +42,7 @@ export type BodyHeaders = {
 
 export type TraditionalApiConfig = {
   raw?: boolean,
+  rawResponse?: boolean,
   parseOptions?: X2jOptions,
   xmlBuilderOptions?: XmlBuilderOptions,
   useIaf?: boolean,
@@ -58,6 +59,7 @@ export type XMLReqConfig = TraditionalApiConfig & {
 
 export const defaultApiConfig: Required<Omit<TraditionalApiConfig, 'hook'>> = {
   raw: false,
+  rawResponse: false,
   parseOptions: defaultXML2JSONParseOptions,
   xmlBuilderOptions: defaultXmlBuilderOptions,
   useIaf: true,
