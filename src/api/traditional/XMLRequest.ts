@@ -207,8 +207,8 @@ export default class XMLRequest {
 
       checkEBayTraditionalResponse(response, json);
 
-      // return raw XML
-      if (this.config.raw) {
+      // return raw XML Asif Raza
+      if (this.config.rawResponse) {
         return data;
       }
       return json;
