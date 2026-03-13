@@ -291,14 +291,15 @@ const getErrorMessage = (eBayError: EBayErrorResponse) => {
 };
 
 const getErrorDescription = (eBayError: EBayErrorResponse, response: any) => {
+  const parameterValue = response?.data?.error?.[0]?.parameter?.[0]?.value ?? '';
   if ('description' in eBayError) {
     // RESTful
-    return eBayError.description;
+    return eBayError.description + ' ' + parameterValue;
   } else if ('Errors' in eBayError) {
     // Traditional
     return Array.isArray(eBayError.Errors) ? eBayError.Errors[0].LongMessage : eBayError.Errors.LongMessage;
   } else if ('longMessage' in eBayError) {
-    return eBayError.longMessage;
+    return eBayError.longMessage  + ' ' + parameterValue;
   }
 
   return (response?.status !== 200 ? response?.statusText : '') || '';
@@ -418,6 +419,10 @@ export const checkEBayTraditionalResponse = (apiResponse: any, data: any) => {
     firstError
   } = extractEBayError(apiResponse, data as EBayApiErrorResponse);
 
+  if (!Array.isArray(firstError) && (firstError as EBayTraditionalError).SeverityCode == 'Warning')
+  {
+    return // Asif Raza. Warning can be safely ignored
+  }
   if (typeof errorCode === 'undefined') {
     // Can happen on restful request
     throw new EBayApiError(message, description, meta, errorCode, firstError);
