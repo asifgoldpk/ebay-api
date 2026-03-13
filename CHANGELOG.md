@@ -1,4 +1,61 @@
 # eBay API Changelog
+### [9.4.4](https://github.com/hendt/ebay-api/compare/v9.4.3...v9.4.4) (2026-03-02)
+
+
+### Bug Fixes
+
+* error handling for restful ([770a43a](https://github.com/hendt/ebay-api/commit/770a43ad29450b0ce5f4e1fecfa5842021f2faa6))
+
+### [9.4.3](https://github.com/hendt/ebay-api/compare/v9.4.2...v9.4.3) (2026-02-21)
+
+### [9.4.2](https://github.com/hendt/ebay-api/compare/v9.4.1...v9.4.2) (2026-02-07)
+
+### [9.4.1](https://github.com/hendt/ebay-api/compare/v9.4.0...v9.4.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* **deps:** upgrade openapi-typescript to v7 ([8bebad4](https://github.com/hendt/ebay-api/commit/8bebad4d5558c52652cc49a3f3cc7d14f4550571))
+* getCompatibilityPropertyValues_Filters ([32ec670](https://github.com/hendt/ebay-api/commit/32ec670ba429e97cc7f1ece93b665de30b863cbb))
+
+## [9.4.0](https://github.com/hendt/ebay-api/compare/v9.3.1...v9.4.0) (2025-12-22)
+
+
+### Features
+
+* message API v1 ([fa23326](https://github.com/hendt/ebay-api/commit/fa233264592fe2e706997dc346bd22fa2d313552))
+
+### [9.3.1](https://github.com/hendt/ebay-api/compare/v9.3.0...v9.3.1) (2025-12-06)
+
+
+### Bug Fixes
+
+* run npm audit fix and update dependencies ([8c3437d](https://github.com/hendt/ebay-api/commit/8c3437df9f24c7101534a33d58d53d5900c058ea))
+
+## [9.3.0](https://github.com/hendt/ebay-api/compare/v9.2.2...v9.3.0) (2025-11-19)
+
+
+### Features
+
+* add traditional API response types and update index exports ([cf5d2eb](https://github.com/hendt/ebay-api/commit/cf5d2eb6792971b14c8470a1ccb0ac4e33261e75))
+
+### [9.2.2](https://github.com/hendt/ebay-api/compare/v9.2.1...v9.2.2) (2025-09-22)
+
+### [9.2.1](https://github.com/hendt/ebay-api/compare/v9.2.0...v9.2.1) (2025-09-08)
+
+
+### Bug Fixes
+
+* add missed sell account v2 specs ([18df828](https://github.com/hendt/ebay-api/commit/18df828c0d9267ab5d81e7f9b3616aea44b8860b))
+* set axios paramsSerializer to null - no brackets ([90555fb](https://github.com/hendt/ebay-api/commit/90555fbacf39f22a7d3ba2cb4bd1cce0d9208df1))
+
+## [9.2.0](https://github.com/hendt/ebay-api/compare/v9.2.0-RC.0...v9.2.0) (2025-03-14)
+
+
+### Features
+
+* Account API v2 ([5aad6bc](https://github.com/hendt/ebay-api/commit/5aad6bc36953829e3a8ecd56eacea28bc97ca52c))
+
 ## [9.2.0-RC.0](https://github.com/hendt/ebay-api/compare/v9.1.1...v9.2.0-RC.0) (2024-12-20)
 
 
