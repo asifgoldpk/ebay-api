@@ -255,12 +255,7 @@ function getEBayError(data?: EBayApiErrorResponse): EBayErrorResponse {
       description: 'error_description' in data ? data.error_description || '' : ''
     };
   }
-  // RESTful
-  if ('error' in data && Array.isArray(data.error)) {
-    return data.error[0];
-  }
-
-  // RESTful
+  // RESTful: prefer `errors` over `error` when both exist
   if ('errors' in data && Array.isArray(data.errors)) {
     return data.errors[0];
   }
