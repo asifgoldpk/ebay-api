@@ -36,13 +36,15 @@
         "default": "./lib/*"
       },
       "import": {
-    "typescript": "^5.9.3"
-  },
-  "overrides": {
-    "minimatch": "^10.2.1",
-    "diff": "^8.0.3"
-  },
-  "repository": {
+        "types": "./dist/*",
+        "default": "./dist/*"
+      }
+    },
+    "./lib/enums": {
+      "require": {
+        "types": "./lib/enums/index.d.ts",
+        "default": "./lib/enums/index.js"
+      },
       "import": {
         "types": "./dist/enums/index.d.ts",
         "default": "./dist/enums/index.js"
@@ -116,17 +118,11 @@
     "sinon": "^17.0.1",
     "standard-version": "^9.0.0",
     "ts-node": "^10.9.2",
-<<<<<<< HEAD
-    "tslint": "^6.1.0",
-    "typescript": "^5.1.6",
-    "gulp": "^5.0.0"
-=======
     "typescript": "^5.9.3"
   },
   "overrides": {
     "minimatch": "^10.2.1",
     "diff": "^8.0.3"
->>>>>>> upstream/master
   },
   "repository": {
     "type": "git",
